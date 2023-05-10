@@ -1,0 +1,51 @@
+@import '../../../../SCSSInstruments/variables.scss';
+
+.item-add-note-container {
+   display: flex;
+   align-items: center;
+   padding: 0 calc($index * 2) 0 calc($index / 2);
+   border: 2px dashed $color50;
+   border-radius: calc($index / 2);
+   transition: .2s;
+   width: 100%;
+   height: calc($index * 2.5);
+   margin: 0 0 calc($index / 2) 0;
+
+   .item-add-note-span {
+      font-size: calc($index / 1.25);
+      font-weight: 700;
+      text-align: center;
+      transition: .2s;
+      color: #505050;
+      pointer-events: none;
+   }
+
+   .svg-container {
+      position: relative;
+      width: calc($index / 1.25);
+      height: calc($index / 1.25);
+      margin: 0 calc($index / 1.5) 0 0;
+      pointer-events: none;
+
+      &>svg {
+         position: absolute;
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+         left: 0;
+
+         path {
+            transition: .2s;
+            fill: #505050;
+         }
+      }
+   }
+
+   &:hover {
+      border-color: $clr-green;
+
+      .item-add-note-span {color: $clr-green;}
+
+      .svg-container {&>svg {path {fill: $clr-green;}}}
+   }
+}

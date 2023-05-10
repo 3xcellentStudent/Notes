@@ -1,0 +1,64 @@
+@import '../../../../SCSSInstruments/variables.scss';
+@import '../../../../SCSSInstruments/extends.scss';
+
+.tools {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: 100%;
+
+   .search-input-container {
+      position: relative;
+      box-shadow: 0 0 5px $color50;
+      border-radius: calc($index / 2);
+      overflow: hidden;
+      width: calc($index * 15);
+      height: calc($index * 2);
+      display: flex;
+      align-items: center;
+      
+      .search-input {
+         width: 100%;
+         padding: 0 $index;
+         font-size: $index;
+         &::placeholder {color: #505050;}
+      }
+
+      .svg-container {
+         position: absolute;
+         width: calc($index / 1.2);
+         height: calc($index / 1.2);
+         top: calc($index / 1.5);
+         left: calc($index * 5);
+         display: flex;
+         pointer-events: none;
+
+         &.contain {&>svg {opacity: 0;}}
+      }
+   }
+
+   .filter {
+      position: relative;
+      width: calc($index * 2);
+      height: calc($index * 2);
+      box-shadow: 0 0 5px #505050;
+      border-radius: calc($index / 2);
+      margin: 0 0 0 $index;
+      @extend %d-f-c;
+
+      .svg-container {
+         position: absolute;
+         pointer-events: none;
+         @extend %d-f-c;
+         width: 70%;
+         height: 70%;
+      }
+   }
+
+   svg {
+      position: absolute;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+   }
+}
