@@ -1,7 +1,0 @@
-@import '../SCSSInstruments/extends.scss';
-@import '../SCSSInstruments/variables.scss';
-
-main {
-   // @extend %d-f-c;
-   padding: 0 calc($index * 2);
-}

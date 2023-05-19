@@ -1,13 +1,17 @@
 import React from 'react'
-import Header from './components/Header/Header'
-import Content from './components/Content/Content'
+import {Routes, Route} from 'react-router-dom'
+
+import MainPage from './Pages/MainPage/MainPage'
+import WorkPage from './Pages/WorkPage/WorkPage'
 
 export default function App(){
 
    return(
       <div className="wrapper">
-         <Header/>
-         <Content/>
+         <Routes>
+            <Route path='/' element={<MainPage/>} />
+            <Route path='/work' element={<WorkPage/>} />
+         </Routes>
       </div>
    )
 }

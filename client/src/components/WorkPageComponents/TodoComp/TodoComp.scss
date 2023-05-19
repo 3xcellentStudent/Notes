@@ -1,0 +1,270 @@
+@import '../../SCSSInstruments/variables.scss';
+@import '../../SCSSInstruments/extends.scss';
+
+:root {
+   --current-color: #E74C3C;
+}
+
+.item-todo-container {
+   display: grid;
+   width: 100%;
+   grid-template: 1fr 0fr / calc($index * 2) 8fr repeat(3, calc($index * 2));
+   grid-template-areas: 
+   'arrow content check task basket'
+   'subtask subtask subtask subtask subtask';
+   padding: 0 $index 0 0;
+   box-shadow: 0 0 3px #505050;
+   border-radius: calc($index / 2);
+   margin: 0 0 calc($index / 2) 0;
+   transition: .2s;
+   min-height: calc($index * 2.5);
+   max-height: calc($index * 2.5);
+   @extend %d-f-c;
+   transition: .3s;
+   transition: 50ms box-shadow;
+
+   .arrow-container {
+      height: 100%;
+      width: 100%;
+      padding: 0 calc($index / 2);
+      cursor: pointer;
+      grid-area: arrow;
+      transition: .3s;
+
+      .svg-container {
+         height: $index;
+         width: 100%;
+         position: relative;
+         top: calc($index / 1.25);
+         pointer-events: none;
+      }
+
+      &:hover {.svg-container {svg {path {fill: #111;}}}}
+   }
+
+   .subtask-wrapper {
+      grid-area: subtask;
+
+      .arrow-container-below {
+         width: 100%;
+         height: 100%;
+         @extend %d-f-c;
+         display: none;
+   
+         .svg-container {
+            width: $index;
+            height: $index;
+            position: relative;
+         }
+      }
+   }
+
+   .content-container {
+      width: 95%;
+      height: 100%;
+      position: relative;
+      grid-area: content;
+
+      .todo-textarea {
+         font-size: calc($index / 1.25);
+         position: absolute;
+         width: 100%;
+         height: $index;
+         transition: .3s;
+         pointer-events: none;
+         top: calc($index / 1.25);
+         left: 0;
+      }
+   }
+   .set-date-wrapper {
+      width: 100%;
+      @extend %d-f-c;
+
+      .set-date-container {width: calc($index * 5);}
+   }
+
+   .item-add-task-container {
+      grid-area: task;
+      position: relative;
+      width: $index;
+      height: $index;
+      margin: 0 auto;
+      
+      .svg-container {
+         position: relative;
+         pointer-events: none;
+         width: 100%;
+         height: 100%;
+         
+         svg{
+            left: 0;
+            path{transition: .2s;}
+         }
+      }
+
+      &:hover {.svg-container {svg{path{fill: $clr-green;}}}}
+   }
+
+   .check-wrapper {
+      grid-area: check;
+      width: $index;
+      height: $index;
+      margin: 0 auto;
+
+      .check-container {
+         width: 100%;
+         height: 100%;
+
+         .svg-container {
+
+            pointer-events: none;
+            height: 100%;
+            width: 100%;
+            position: relative;
+
+            &>svg {
+               top: 0;
+               left: 0;
+               position: absolute;
+               object-fit: cover;
+               width: 100%;
+               height: 100%;
+   
+               &>path {fill: $clr-green;}
+            }
+         }
+      }
+   }
+
+   .priority-wrapper {
+      padding: calc($index / 4);
+      @extend %d-f-c;
+      grid-area: priority;
+      
+      .priority-container {
+         width: calc($index * 1.5);
+         height: calc($index * 1.5);
+         border-radius: 50%;
+         box-shadow: 0 0 3px #505050;
+         @extend %d-f-c;
+         transition: .1s;
+         
+         .svg-container {
+            pointer-events: none;
+            height: 75%;
+            width: 75%;
+            position: relative;
+
+            &>svg {
+               top: 0;
+               left: 0;
+               position: absolute;
+               object-fit: cover;
+               width: 100%;
+               height: 100%;
+   
+               &>path {fill: var(--current-color);}
+            }
+         }
+
+         &:hover {box-shadow: 0 0 6px #111;}
+      }
+   }
+
+   .progress {
+      @extend %d-f-c;
+      grid-area: progress;
+      
+      .svg-container {
+         width: calc($index * 1.5);
+         height: calc($index * 1.5);
+         margin: 0 calc($index / 2) 0 0;
+         position: relative;
+
+         svg {
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+         }
+      }
+
+      &>span {
+         font-size: calc($index / 1.25);
+         font-weight: 700;
+         text-align: center;
+      }
+   }
+
+   .item-todo-span {
+      font-weight: 700;
+      text-align: center;
+      &:first-child {text-align: start;}
+      &:last-child {text-align: end;}
+      grid-area: basket;
+
+      .svg-container {
+         position: relative;
+         width: $index;
+         height: $index;
+         margin: auto 0 auto auto;
+
+         &>svg {
+            top: 0;
+            left: 0;
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+         }
+      }
+   }
+
+   &:hover {box-shadow: 0 0 3px #505050, 3px 3px 6px #505050;}
+
+   &.active {
+      min-height: calc($index * 15);
+      max-height: 100%;
+      grid-template: calc($index * 2.5) calc($index * 15) 1fr / calc($index * 2) 8fr repeat(3, calc($index * 2));
+      grid-template-areas: 
+      'arrow arrow check task basket'
+      'content content content content content'
+      'subtask subtask subtask subtask subtask';
+      padding: 0 $index calc($index / 2) 0;
+
+      .arrow-container {.svg-container {transform: rotate(180deg);}}
+
+      .subtask-wrapper {
+         .arrow-container-below {
+            @extend %d-f-c;
+            width: 100%;
+            padding: 0 0 0 $index;
+   
+            .svg-container {
+               width: $index;
+               height: $index;
+               position: relative;
+               pointer-events: none;
+               svg {left: 0;}
+            }
+         }
+      }
+
+      & .content-container {
+         width: 100%;
+         padding: 0 0 0 $index;
+
+         textarea {
+            pointer-events: fill;
+            left: $index;
+            top: 0;
+            padding: calc($index / 2);
+            height: calc(100% - $index);
+            width: calc(100% - $index);
+            border-radius: calc($index / 2);
+            background: rgba(#111, .1);
+         }
+      }
+   }
+}

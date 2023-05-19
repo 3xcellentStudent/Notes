@@ -19,12 +19,11 @@ input, textarea {cursor: text;}
 body {
    display: flex;
    align-items: center;
+   overflow-x: hidden;
 }
-/* .svg-container {pointer-events: none;} */
-/* svg {pointer-events: none;} */
 
 .wrapper {
-   width: 100vw;
+   min-width: 100vw;
    height: 100vh;
    padding: calc((1vw + 1vh) * 2);
    display: flex;
@@ -35,4 +34,9 @@ svg {
    object-fit: cover;
    width: 100%;
    height: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

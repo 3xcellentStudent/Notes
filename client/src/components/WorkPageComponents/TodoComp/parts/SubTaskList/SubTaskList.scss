@@ -1,0 +1,25 @@
+@import '../../../../SCSSInstruments/variables.scss';
+@import '../../../../SCSSInstruments/extends.scss';
+
+.subtask-wrapper {
+   
+
+   .subtask-list {
+      width: calc(100% + $index);
+      min-height: 0px;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0;
+      @extend %d-f-c;
+      flex-direction: column;
+      transition: .3s ease;
+
+      &.active {
+         min-height: calc($index * 2);
+         max-height: 100%;
+         overflow: visible;
+         padding: calc($index / 2) 0;
+      }
+   }
+
+}

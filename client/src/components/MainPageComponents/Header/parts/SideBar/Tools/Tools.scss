@@ -1,0 +1,96 @@
+@import '../../../../../SCSSInstruments/variables.scss';
+@import '../../../../../SCSSInstruments/extends.scss';
+
+.tools {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: 100%;
+
+   .search-input-container {
+      position: relative;
+      box-shadow: 0 0 5px $color50;
+      border-radius: calc($index / 2);
+      overflow: hidden;
+      width: calc($index * 15);
+      height: calc($index * 2);
+      display: flex;
+      align-items: center;
+      
+      .search-input {
+         width: 100%;
+         padding: 0 $index;
+         font-size: $index;
+         &::placeholder {color: #505050;}
+      }
+
+      .svg-container {
+         position: absolute;
+         width: calc($index / 1.2);
+         height: calc($index / 1.2);
+         top: calc($index / 1.75);
+         left: calc($index * 5);
+         display: flex;
+         pointer-events: none;
+
+         &.contain {&>svg {opacity: 0;}}
+      }
+   }
+
+   .filter-wrapper {
+      position: relative;
+      width: calc($index * 2);
+      height: calc($index * 2);
+      margin: 0 0 0 $index;
+
+      .filter {
+         position: relative;
+         width: 100%;
+         height: 100%;
+         box-shadow: 0 0 5px #505050;
+         border-radius: calc($index / 2);
+         @extend %d-f-c;
+         z-index: 2;
+         background: #fff;
+      }
+   
+      .filter-complete, .filter-priority, .filter-time {
+         width: 100%;
+         height: 100%;
+         top: 0;
+         position: absolute;
+         height: calc($index * 2);
+         border-radius: calc($index / 2);
+         @extend %d-f-c;
+         box-shadow: 0 0 3px #505050;
+         transition: .3s;
+         z-index: 1;
+         background: #fff;
+      }
+   
+      .filter-complete.active {
+         top: calc($index * 2.5);
+      }
+      .filter-priority.active {
+         top: calc($index * 5);
+      }
+      .filter-time.active {
+         top: calc($index * 7.5);
+      }
+   
+      .svg-container {
+         position: absolute;
+         pointer-events: none;
+         @extend %d-f-c;
+         width: 70%;
+         height: 70%;
+      }
+   
+      svg {
+         position: absolute;
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+      }
+   }
+}

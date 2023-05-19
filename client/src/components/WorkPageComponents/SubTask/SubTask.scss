@@ -1,0 +1,167 @@
+@import '../../SCSSInstruments/variables.scss';
+@import '../../SCSSInstruments/extends.scss';
+
+:root {
+   --current-color: #E74C3C;
+}
+
+.subitem-todo-container {
+   display: grid;
+   width: 90%;
+   grid-template: 1fr 0fr / calc($index * 2) 8fr repeat(2, calc($index * 1.5));
+   grid-template-areas: 'arrow content task span'
+   'below below below below';
+   padding: 0 $index 0 0;
+   box-shadow: 0 0 3px #505050;
+   border-radius: calc($index / 2);
+   margin: 0 0 calc($index / 2);
+   transition: .2s;
+   min-height: calc($index * 2);
+   max-height: calc($index * 2);
+   @extend %d-f-c;
+   transition: .3s;
+   overflow: hidden;
+
+   .arrow-container.subitem {
+      height: 100%;
+      width: 100%;
+      padding: 0 calc($index / 2);
+      cursor: pointer;
+      grid-area: arrow;
+      transition: .3s;
+
+      &>.svg-container {
+         height: $index;
+         width: 100%;
+         position: relative;
+         top: calc($index / 2);
+         pointer-events: none;
+         transition: .2s;
+         transform: rotate(0);
+      }
+
+      &:hover {.svg-container {svg {path {fill: #111;}}}}
+
+      &.active {.svg-container {transform: rotate(180deg);}}
+   }
+
+   .content-container.subitem {
+      width: 80%;
+      height: 100%;
+      position: relative;
+      grid-area: content;
+      padding: 0 calc($index / 2) 0 0;
+
+      .subitem-textarea {
+         top: calc($index / 1.75);
+         left: 0;
+         position: absolute;
+         width: 100%;
+         transition: .3s;
+         pointer-events: none;
+         // background: transparent !important;
+         padding: 0 calc($index / 2);
+         font-size: calc((1vw + 1vh) / 1.25);
+      }
+   }
+
+   .item-add-task-container {
+      grid-area: task;
+      pointer-events: fill;
+      margin: calc($index / 1.75) auto auto !important;
+
+      .svg-container {
+         pointer-events: none;
+         svg {path{fill: $clr-green;}}
+      }
+   }
+
+   .subitem-todo-span {
+      font-weight: 700;
+      grid-area: span;
+      margin: calc($index / 2) auto auto;
+
+      .svg-container {
+         position: relative;
+         width: $index;
+         height: $index;
+         top: 0;
+         // margin: 0 0 auto auto;
+
+         &>svg {
+            top: 0;
+            left: 0;
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+         }
+      }
+   }
+
+   .subtask-wrapper.inside {
+      grid-area: below;
+
+      .arrow-container.below {
+         display: none;
+         padding: 0 0 calc($index / 2);
+         width: 100%;
+   
+         .svg-container {
+            width: $index;
+            top: 0;
+            transform: rotate(0);
+            transition: .2s;
+            margin: 0 auto;
+
+            svg {left: 0;}
+   
+            &.active {transform: rotate(180deg);}
+         }
+      }
+   }
+
+   &:hover {box-shadow: 0 0 3px #505050, 3px 3px 6px #505050;}
+
+   &.active {
+      min-height: calc($index * 10);
+      max-height: 100%;
+      grid-template: 1fr 0fr / calc($index * 2) 8fr repeat(2, calc($index * 1.5));
+      grid-template-areas: 'arrow content task span'
+      'below below below below';
+      transition: .3s;
+      overflow-y: scroll;
+
+      .content-container.subitem {
+         width: 90%;
+         min-height: calc($index * 10);
+         max-height: calc($index * 12);
+
+         .subitem-textarea {
+            pointer-events: fill;
+            left: $index;
+            top: calc($index * .15);
+            padding: calc($index / 2);
+            height: calc(100% - $index * 2);
+            width: calc(100% - $index);
+            border-radius: calc($index / 2);
+            // background: rgba(#111, .1);
+         }
+      }
+
+      .subtask-wrapper.inside {
+         grid-area: below;
+         width: 100%;
+
+         .arrow-container.below {
+            display: block;
+         }
+      }
+   }
+
+   &.mark {
+      width: 100% !important;
+      border-radius: 0;
+   }
+}

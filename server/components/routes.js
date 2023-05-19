@@ -3,8 +3,9 @@ const controller = require('./Controller')
 const router = new Router()
 
 router.get('/get-notes', controller.getNotes)
+router.post('/get-note-id', controller.getNoteOfID)
 router.post('/create-note', controller.createNote)
-router.patch('/update-note', controller.updateNote)
-router.post('/remove-note', controller.removeNote)
+router.post('/update-note', controller.updateNote)
+router.post('/remove', controller.remove)
 
 module.exports = router
