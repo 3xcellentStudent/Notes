@@ -5,7 +5,6 @@ const connection = mysql.createConnection({
    user: 'root',
    password: '28102000andrE',
    database: 'todoapp',
-   
 })
 
 connection.connect(err => {

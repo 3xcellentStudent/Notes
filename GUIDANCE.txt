@@ -1,0 +1,19 @@
+- Зайдіть в MYSQL та введіть окремо кожну з команд нижче:
+
+CREATE database todoapp;
+USE todoapp;
+CREATE TABLE notes(id int AUTO_INCREMENT, title VARCHAR(100), descr JSON, PRIMARY KEY(id));
+
+- Як тільки буде створенно базу даних з таблицею перейдіть за цим шляхом "/server/components/database.js" до файлу database.js. 
+
+- Замініть в полі "password" пароль на свій від MYSQL в якому ви створили базу даних todoapp та таблицю notes:
+
+const connection = mysql.createConnection({
+   host: 'localhost',
+   user: 'root',
+   password: '28102000andrE',
+   database: 'todoapp',
+})
+
+- Відкрийте термінал та в папці server запустіть команду "node index". Сервер має запуститися.
+- В іншому терміналі перейдіть в папку client та напищіть команду "npm start".
